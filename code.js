@@ -2,6 +2,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     createBoard(16);
     console.log('hi');
+
+    document.querySelectorAll('.pixel').forEach(pixel => {
+            pixel.addEventListener('mouseover', () => {
+                pixel.style.backgroundColor = "red";
+            })
+        })
 })
 
 function createBoard(size) {
@@ -14,11 +20,11 @@ function createBoard(size) {
 
     for (let i = 0; i < numDivs; i++) {
         let div = document.createElement('div');
+        div.classList.add('pixel');     
         board.style.backgroundColor = "yellow"
         board.insertAdjacentElement('beforeend', div);
     }
 }
-
 
 
 
