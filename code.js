@@ -1,13 +1,23 @@
 //when load the whole page
 document.addEventListener('DOMContentLoaded', () => {
-    createBoard(16);
-    console.log('hi');
 
-    document.querySelectorAll('.pixel').forEach(pixel => {
+    let popupBtn = document.querySelector('#popup');
+    let size;
+
+    popupBtn.addEventListener('click', () => {
+        size = getSize();
+        createBoard(size);
+    })
+
+
+    console.log('hi');
+    document.querySelector('body').addEventListener('mousedown', () => { 
+        document.querySelectorAll('.pixel').forEach(pixel => {
             pixel.addEventListener('mouseover', () => {
                 pixel.style.backgroundColor = "red";
             })
         })
+    })
 })
 
 function createBoard(size) {
@@ -23,6 +33,20 @@ function createBoard(size) {
         div.classList.add('pixel');     
         board.style.backgroundColor = "yellow"
         board.insertAdjacentElement('beforeend', div);
+    }
+}
+
+function getSize() {
+    let input = prompt("What will be the size of the borad?");
+    let message = document.querySelector('#message');
+    if(input == "") {
+        message.innerHTML = "Please provide a number!!";
+    }
+    else if (input > 100 || input < 1 )
+        message.innerHTML = "Provide a number between 1 and 100!!"
+    else  {
+        message.innerHTML = "Now you can play!!"
+        return input;
     }
 }
 
